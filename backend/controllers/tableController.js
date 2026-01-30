@@ -26,7 +26,7 @@ const addTable = async (req, res) => {
         const table = new tableModel({
             name,
             status: 'available',
-            qrCodeLink: `${process.env.FRONTEND_URL || 'http://localhost:5173'}?table=${encodeURIComponent(name)}`
+            qrCodeLink: `${process.env.FRONTEND_URL || 'https://a1-cafe-frontend.onrender.com'}?table=${encodeURIComponent(name)}`
         });
 
         await table.save();
