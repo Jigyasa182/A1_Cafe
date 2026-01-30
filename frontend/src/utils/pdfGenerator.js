@@ -90,8 +90,9 @@ export const generateReceipt = (order) => {
     doc.text("Thank you for visiting A1 Cafe! We hope to see you again.", pageWidth / 2, footerY, { align: "center" });
 
     doc.setFont("helvetica", "normal");
-    doc.text("www.a1cafe.com | Contact: +91 9876543210", pageWidth / 2, footerY + 5, { align: "center" });
+    doc.text("www.a1cafe.com | Contact: +91 9685968315", pageWidth / 2, footerY + 5, { align: "center" });
 
     // --- Save PDF ---
     doc.save(`A1-Cafe-Receipt-${order._id.slice(-6)}.pdf`);
 };
+
