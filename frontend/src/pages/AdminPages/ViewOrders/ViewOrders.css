@@ -1,0 +1,337 @@
+.view-orders {
+    animation: fadeIn 0.4s ease;
+}
+
+.view-orders h2 {
+    color: var(--text-dark);
+    margin-bottom: 28px;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+/* Notification - High Contrast & Vibrancy */
+.notification {
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-width: 2px;
+}
+
+.notification-success {
+    background: #ECFDF5;
+    color: #064E3B;
+    border-color: #34D399;
+}
+
+.notification-error {
+    background: #FEF2F2;
+    color: #7F1D1D;
+    border-color: #F87171;
+}
+
+/* Filter Controls - Branded Buttons */
+.filter-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid #F3E5D8;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #5D4037;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-brown);
+    background: #FFFAF5;
+}
+
+.filter-btn.active {
+    background: var(--primary-brown);
+    border-color: var(--primary-brown);
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+/* Orders Grid */
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+/* Order Card - Sober & Defined */
+.order-card {
+    background: white;
+    border: 1px solid #D7C4B1;
+    /* Clean defined border, not too thick */
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(44, 24, 16, 0.05);
+    /* Sober shadow */
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-brown);
+    box-shadow: 0 10px 25px rgba(44, 24, 16, 0.08);
+}
+
+.order-header {
+    background: #FFF9F5;
+    /* Very subtle tint */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E6D5C3;
+}
+
+.order-info h4 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #3E2723;
+    font-weight: 800;
+}
+
+.order-time {
+    margin: 2px 0 0 0;
+    font-size: 0.8rem;
+    color: #8D6E63;
+    font-weight: 600;
+}
+
+.status-select {
+    padding: 8px 14px;
+    border: 1px solid #D7C4B1;
+    border-radius: 10px;
+    background: white;
+    color: #3E2723;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--primary-brown);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.05);
+}
+
+/* Specific status colors for select */
+.status-select.status-Preparing {
+    color: #854D0E;
+    border-color: #FCD34D;
+    background: #FFFBEB;
+}
+
+.status-select.status-Ready {
+    color: #065F46;
+    border-color: #6EE7B7;
+    background: #ECFDF5;
+}
+
+.status-select.status-Paid {
+    color: #064E3B;
+    border-color: #34D399;
+    background: #F0FDF4;
+}
+
+.status-select.status-Cancelled {
+    color: #991B1B;
+    border-color: #FCA5A5;
+    background: #FEF2F2;
+}
+
+/* Order Customer Info */
+.order-customer {
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 1px solid #F3E5D8;
+}
+
+.order-customer p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: #3E2723;
+    font-weight: 600;
+}
+
+.order-customer p strong {
+    color: var(--primary-brown);
+    font-weight: 700;
+}
+
+/* Order Items - Clear List */
+.order-items {
+    padding: 16px 20px;
+    border-bottom: 1px solid #F3E5D8;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.order-items h5 {
+    margin: 0 0 12px 0;
+    color: #A1887F;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.order-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-items li {
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: #4E342E;
+    border-bottom: 1px dashed #E6D5C3;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.order-items li:last-child {
+    border-bottom: none;
+}
+
+/* Order Footer */
+.order-footer {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFBF8;
+}
+
+.order-total {
+    font-size: 1rem;
+    color: #3E2723;
+    font-weight: 700;
+}
+
+.order-total strong {
+    font-size: 1.4rem;
+    color: var(--primary-brown);
+    font-weight: 800;
+}
+
+.order-details {
+    display: flex;
+    gap: 10px;
+}
+
+.order-type,
+.table-info {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.order-type {
+    background: #FFFAF5;
+    color: var(--primary-brown);
+    border: 1px solid #F3E5D8;
+}
+
+.table-info {
+    background: var(--primary-brown);
+    color: white;
+}
+
+/* Action Buttons - Clean & Sized */
+.clear-table-btn {
+    width: calc(100% - 48px);
+    margin: 0 24px 24px;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.delete-order-btn,
+.download-receipt-btn {
+    width: calc(100% - 40px);
+    margin: 0 20px 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.download-receipt-btn {
+    background: #FFF5EC;
+    color: var(--primary-brown);
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.download-receipt-btn:hover {
+    background: var(--primary-brown);
+    color: white;
+}
+
+.clear-table-btn {
+    background: #059669;
+    color: white;
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
+}
+
+.clear-table-btn:hover {
+    background: #047857;
+    transform: translateY(-2px);
+}
+
+.delete-order-btn {
+    background: #FFF5F5;
+    color: #DC2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.delete-order-btn:hover {
+    background: #DC2626;
+    color: white;
+}
+
+@media (max-width: 640px) {
+    .orders-grid {
+        grid-template-columns: 1fr;
+    }
+}

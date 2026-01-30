@@ -1,0 +1,302 @@
+.cart-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background-color: var(--cream-bg);
+    padding-bottom: 80px;
+}
+
+.page-title {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 50px;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 80px 40px;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 10px 40px rgba(139, 69, 19, 0.05);
+    border: 1px solid rgba(139, 69, 19, 0.05);
+}
+
+.empty-cart-message h2 {
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.empty-cart-message p {
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.cart-content-wrapper {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Cart Items List */
+.cart-items-list {
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    padding: 30px;
+    border: 1px solid rgba(139, 69, 19, 0.05);
+}
+
+.cart-item-row {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr auto;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.cart-item-row:last-child {
+    border-bottom: none;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.item-info h4 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.item-info p {
+    margin: 6px 0 0;
+    color: var(--primary-brown);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-self: center;
+    background: var(--cream-bg);
+    padding: 6px;
+    border-radius: 50px;
+}
+
+.item-quantity button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--primary-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.item-quantity button:hover {
+    background-color: var(--primary-brown);
+    color: white;
+}
+
+.item-quantity span {
+    font-weight: 800;
+    min-width: 24px;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.item-total-price {
+    font-weight: 800;
+    color: var(--text-dark);
+    justify-self: end;
+    padding-right: 20px;
+    font-size: 1.15rem;
+}
+
+.delete-btn {
+    background: rgba(0, 0, 0, 0.03);
+    border: none;
+    color: #999;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background: #FFEBEE;
+    color: #D32F2F;
+}
+
+/* Order Summary */
+.order-summary-card {
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.06);
+    padding: 40px;
+    position: sticky;
+    top: 110px;
+    border: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.order-summary-card h3 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-light);
+    font-size: 1.05rem;
+}
+
+.summary-row span:last-child {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
+}
+
+.summary-row.total {
+    color: var(--text-dark);
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 10px 0 30px;
+}
+
+.summary-row.total span:last-child {
+    color: var(--primary-brown);
+}
+
+.checkout-btn-full {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--secondary-brown) 100%);
+    color: white;
+    font-weight: 800;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(139, 69, 19, 0.2);
+}
+
+.checkout-btn-full:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cart-content-wrapper {
+        grid-template-columns: 1fr;
+        /* Stack Items and Summary */
+        gap: 30px;
+    }
+
+    .cart-item-row {
+        /* Redesign row for mobile: Image Top, Details Below or Side-by-Side wrapped */
+        grid-template-columns: 60px 1fr auto;
+        grid-template-rows: auto auto;
+        /* Two rows */
+        gap: 12px;
+        align-items: start;
+        padding-bottom: 15px;
+    }
+
+    .item-info {
+        grid-column: 1 / span 2;
+        /* Full width image+text */
+        align-items: flex-start;
+    }
+
+    /* Adjust Item Info layout if needed */
+    .item-info div {
+        flex: 1;
+    }
+
+    .item-quantity {
+        grid-column: 2;
+        /* Bottom left-ish */
+        grid-row: 2;
+        justify-self: start;
+    }
+
+    .item-total-price {
+        grid-column: 3;
+        /* Bottom right */
+        grid-row: 2;
+        padding-right: 0;
+    }
+
+    .delete-btn {
+        grid-column: 3;
+        /* Top right */
+        grid-row: 1;
+        justify-self: end;
+        padding: 5px;
+        /* Increase touch target */
+    }
+
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .order-summary-card {
+        position: static;
+        /* No sticky on mobile */
+    }
+}

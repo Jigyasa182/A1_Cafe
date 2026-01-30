@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+	/* Color Palette */
+	--primary-brown: #8B4513;
+	/* SaddleBrown for buttons/accents */
+	--secondary-brown: #A0522D;
+	/* Sienna for hover states */
+	--dark-brown: #3E2723;
+	/* Darkest brown for footer/headings */
+	--cream-bg: #FFF8F0;
+	/* Main background */
+	--cream-dark: #FDFBF7;
+	/* Slightly darker cream for contrast */
+	--text-dark: #2C1810;
+	/* Main text color */
+	--text-light: #5d4037;
+	/* Secondary text */
+	--white: #FFFFFF;
+	--accent-purple: #D7CCC8;
+	/* A soft coffee-tone purple/grey for shadows if needed */
+
+	/* Spacing & Radius */
+	--radius-lg: 16px;
+	--radius-md: 12px;
+	--radius-sm: 8px;
+	--radius-pill: 50px;
+
+	/* Shadows */
+	--shadow-soft: 0 4px 20px rgba(62, 39, 35, 0.08);
+	--shadow-hover: 0 8px 30px rgba(62, 39, 35, 0.12);
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	scroll-behavior: smooth;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	min-height: 100vh;
+	background-color: var(--cream-bg);
+	color: var(--text-dark);
+	line-height: 1.6;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	transition: color 0.3s ease;
+}
+
+button {
+	font-family: inherit;
+}
+
+.app {
+	width: 100%;
+	margin: 0 auto;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--cream-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--secondary-brown);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--primary-brown);
+}
+
+/* Mobile Base Styles */
+@media (max-width: 480px) {
+	html {
+		font-size: 15px;
+	}
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+	html {
+		font-size: 17px;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

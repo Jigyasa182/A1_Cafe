@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Connection Test</title>
+</head>
+<body>
+    <h1>Backend Connection Test</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function testConnection() {
+            const url = "http://localhost:4000";
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Testing...";
+            
+            try {
+                // Test root endpoint
+                const response = await axios.get(url + "/", { timeout: 5000 });
+                resultDiv.innerHTML = `<p style="color: green;">✅ SUCCESS!</p><pre>${JSON.stringify(response.data, null, 2)}</pre>`;
+                
+                // Test order endpoint
+                const orderData = {
+                    userId: null,
+                    tableId: null,
+                    items: [{ name: "Test", price: 10, quantity: 1 }],
+                    amount: 10
+                };
+                
+                const orderResponse = await axios.post(url + "/api/order/place", orderData, {
+                    headers: { 'Content-Type': 'application/json' },
+                    timeout: 10000
+                });
+                
+                resultDiv.innerHTML += `<p style="color: green;">✅ Order endpoint works!</p><pre>${JSON.stringify(orderResponse.data, null, 2)}</pre>`;
+            } catch (error) {
+                let errorMsg = `<p style="color: red;">❌ ERROR:</p>`;
+                errorMsg += `<p>Code: ${error.code || 'N/A'}</p>`;
+                errorMsg += `<p>Message: ${error.message || 'N/A'}</p>`;
+                if (error.response) {
+                    errorMsg += `<p>Status: ${error.response.status}</p>`;
+                    errorMsg += `<p>Data: ${JSON.stringify(error.response.data, null, 2)}</p>`;
+                }
+                if (error.request) {
+                    errorMsg += `<p style="color: orange;">⚠️ Request was sent but no response received</p>`;
+                }
+                resultDiv.innerHTML = errorMsg;
+            }
+        }
+    </script>
+</body>
+</html>

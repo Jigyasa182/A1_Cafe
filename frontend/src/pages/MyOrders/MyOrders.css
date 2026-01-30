@@ -1,0 +1,257 @@
+/* My Orders - Refined Premium Theme */
+.my-orders {
+  padding-top: 100px;
+  min-height: 100vh;
+  background-color: #FFFAF5;
+  padding-bottom: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.my-orders h2 {
+  text-align: center;
+  color: #3E2723;
+  margin-bottom: 50px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(44, 24, 16, 0.04);
+  padding: 0;
+  border: 1px solid #E6D5C3;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(44, 24, 16, 0.08);
+  border-color: var(--primary-brown);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: #FFF9F5;
+  /* Subtle Header tint */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 20px;
+  border-bottom: 1px solid #E6D5C3;
+}
+
+.order-header:hover {
+  background: #FCF5EF;
+}
+
+.order-branding {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.order-type-icon {
+  width: 48px;
+  height: 48px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  border: 1px solid #F3E5D8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.order-id-group .label {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #3E2723;
+}
+
+.order-date-small {
+  font-size: 0.8rem;
+  color: #A1887F;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.order-items-preview {
+  background: #FFFAF5;
+  padding: 6px 14px;
+  border-radius: 50px;
+  border: 1px solid #F3E5D8;
+  margin-top: 6px;
+}
+
+.preview-text {
+  color: #8D6E63;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.total-amount-small {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-brown);
+}
+
+.item-count-badge {
+  background: #4E342E;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.order-status-pill {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+/* Sober User Status Colors */
+.order-status-pill.status-Preparing {
+  background: #CA8A04 !important;
+}
+
+.order-status-pill.status-Served {
+  background: #059669 !important;
+}
+
+.order-status-pill.status-Paid {
+  background: #047857 !important;
+}
+
+.order-status-pill.status-Completed {
+  background: #047857 !important;
+}
+
+.order-details-expanded {
+  padding: 30px;
+  background: white;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: #A1887F;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: #3E2723;
+  font-weight: 700;
+}
+
+.order-items-list {
+  background: #FFFAF5;
+  border: 1px solid #F3E5D8;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 20px 0;
+}
+
+.order-items-list h4 {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #4E342E;
+  text-transform: uppercase;
+  border-bottom: 1px solid #F3E5D8;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.order-item-lite {
+  padding: 10px 0;
+  border-bottom: 1px dashed #E6D5C3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3E2723;
+}
+
+.item-price {
+  font-weight: 700;
+  color: var(--primary-brown);
+}
+
+.order-footer-expanded {
+  border-top: 1px solid #F3E5D8;
+  padding-top: 20px;
+}
+
+.final-price {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--primary-brown);
+}
+
+.status-note {
+  font-weight: 700;
+  color: #4E342E;
+  background: #FFF9F5;
+  border: 1px solid #E6D5C3;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.receipt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: #F0FDF4;
+  border-radius: 16px;
+  border: 1px dashed #34D399;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.user-receipt-btn {
+  background: #059669;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.25);
+}
+
+.user-receipt-btn:hover {
+  background: #047857;
+  transform: translateY(-4px) scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .my-orders h2 {
+    font-size: 2.4rem;
+  }
+
+  .order-header {
+    padding: 20px;
+  }
+
+  .order-details-expanded {
+    padding: 20px;
+  }
+}
