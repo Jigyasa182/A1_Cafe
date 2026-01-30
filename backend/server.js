@@ -54,15 +54,20 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
+        console.warn(`CORS blocked for origin: ${origin}`);
         callback(new Error("CORS not allowed"));
       }
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "token"],
-    credentials: true
+    allowedHeaders: ["Content-Type", "Authorization", "token", "Accept", "Origin", "X-Requested-With"],
+    credentials: true,
+    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
 
@@ -72,8 +77,11 @@ app.use(
   "/images",
   express.static(uploadsPath, {
     maxAge: "1d",
-    setHeaders: (res) => {
-      res.setHeader("Access-Control-Allow-Origin", allowedOrigins.join(","));
+    setHeaders: (res, path) => {
+      // Don't join the origins with comma, as it's invalid for Access-Control-Allow-Origin
+      // Instead, we can use * or a dynamic approach if needed. 
+      // Since it's public images, * is usually fine and safer.
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Cache-Control", "public, max-age=86400");
     }
   })
