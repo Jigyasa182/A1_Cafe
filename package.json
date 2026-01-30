@@ -3,6 +3,9 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.7",
-    "mongodb": "5.5"
+    "cloudinary": "^1.41.3",
+    "mongodb": "5.5",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0"
   }
 }
