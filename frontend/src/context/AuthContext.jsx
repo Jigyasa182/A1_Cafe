@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
-const API_URL = 'http://a1-cafe-backend-07w6.onrender.com';
+const API_URL = 'https://a1-cafe-backend-07w6.onrender.com';
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

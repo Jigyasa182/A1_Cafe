@@ -14,9 +14,9 @@ export const CartProvider = ({ children }) => {
             // Fetch cart from server
             const fetchCart = async () => {
                 try {
-                    const response = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/cart/get', {
+                    const response = await fetch('https://a1-cafe-backend-07w6.onrender.com/api/cart/get', {
                         method: 'POST',
-                        headers: { 
+                        headers: {
                             'token': token,
                             'Content-Type': 'application/json'
                         }
@@ -51,9 +51,9 @@ export const CartProvider = ({ children }) => {
             // Save to backend for logged-in users
             const saveCart = async () => {
                 try {
-                    await fetch('http://a1-cafe-backend-07w6.onrender.com/api/cart/update', {
+                    await fetch('https://a1-cafe-backend-07w6.onrender.com/api/cart/update', {
                         method: 'POST',
-                        headers: { 
+                        headers: {
                             'token': token,
                             'Content-Type': 'application/json'
                         },
@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (food) => {
         const existingItem = cart.find(item => item._id === food._id);
-        
+
         if (existingItem) {
             setCart(cart.map(item =>
                 item._id === food._id

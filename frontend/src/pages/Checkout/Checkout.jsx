@@ -27,7 +27,7 @@ const Checkout = ({ onClose, onSuccess, onOrderPlaced }) => {
 
     // Connect to Socket.IO and fetch available tables
     useEffect(() => {
-        const newSocket = io('http://a1-cafe-backend-07w6.onrender.com', {
+        const newSocket = io('https://a1-cafe-backend-07w6.onrender.com', {
             reconnection: true,
             reconnectionDelay: 1000,
             reconnectionAttempts: 5,
@@ -63,7 +63,7 @@ const Checkout = ({ onClose, onSuccess, onOrderPlaced }) => {
 
     const fetchAvailableTables = async () => {
         try {
-            const response = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/table/list');
+            const response = await fetch('https://a1-cafe-backend-07w6.onrender.com/api/table/list');
             const data = await response.json();
             if (data.success) {
                 setAvailableTables(data.data || []);
@@ -128,7 +128,7 @@ const Checkout = ({ onClose, onSuccess, onOrderPlaced }) => {
                 orderType: isAuthenticated ? 'dine-in' : 'takeaway'
             };
 
-            const result = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/order/place', {
+            const result = await fetch('https://a1-cafe-backend-07w6.onrender.com/api/order/place', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

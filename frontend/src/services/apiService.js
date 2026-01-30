@@ -1,4 +1,4 @@
-const API_URL = 'http://a1-cafe-backend-07w6.onrender.com/api';
+const API_URL = 'https://a1-cafe-backend-07w6.onrender.com/api';
 
 export const apiService = {
     // Auth endpoints

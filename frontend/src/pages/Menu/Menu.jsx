@@ -101,7 +101,7 @@ const Menu = () => {
                 return (
                   <div key={item._id} className="food-card">
                     <div className="food-card-img-container">
-                      <img src={`http://a1-cafe-backend-07w6.onrender.com/images/${item.image}`} alt={item.name} />
+                      <img src={`https://a1-cafe-backend-07w6.onrender.com/images/${item.image}`} alt={item.name} />
                     </div>
                     <div className="food-card-info">
                       <div className="food-card-name-rating">
