@@ -34,7 +34,7 @@ const Cart = () => {
 								<div key={item._id} className="cart-item-row">
 									<div className="item-info">
 										<img
-											src={`http://localhost:4000/images/${item.image}`}
+											src={`http://a1-cafe-backend-07w6.onrender.com/images/${item.image}`}
 											alt={item.name}
 											className="item-img"
 										/>

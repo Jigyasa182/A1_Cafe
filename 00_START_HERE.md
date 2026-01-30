@@ -57,7 +57,7 @@
 cd backend
 npm start
 ```
-✅ Runs on http://localhost:4000
+✅ Runs on http://a1-cafe-backend-07w6.onrender.com
 
 ### Step 2: Start Frontend
 ```bash
@@ -298,7 +298,7 @@ cd backend && node scripts/createDemoUser.js
 | Service | URL |
 |---------|-----|
 | Website | http://localhost:5173/ |
-| Backend API | http://localhost:4000 |
+| Backend API | http://a1-cafe-backend-07w6.onrender.com |
 | MongoDB | Check .env MONGO_URI |
 
 ---

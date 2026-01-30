@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api';
+const API_URL = 'http://a1-cafe-backend-07w6.onrender.com/api';
 
 export const apiService = {
     // Auth endpoints

@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:4000',
+        target: 'http://a1-cafe-backend-07w6.onrender.com',
         changeOrigin: true,
         secure: false,
       }

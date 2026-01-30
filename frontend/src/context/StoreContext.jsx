@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 
 const StoreContextProvider = (props) => {
 	const [cartItems, setCartItems] = useState({});
-	const url = "http://localhost:4000";
+	const url = "http://a1-cafe-backend-07w6.onrender.com";
 	const [token, setToken] = useState("");
 	const [food_list, setFoodList] = useState([]);
 	const [tableId, setTableId] = useState("");

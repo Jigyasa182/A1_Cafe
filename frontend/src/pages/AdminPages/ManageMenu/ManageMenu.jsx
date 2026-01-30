@@ -149,7 +149,7 @@ const ManageMenu = () => {
                                 foods.map(food => (
                                     <div key={food._id} className="menu-item-card">
                                         <img
-                                            src={`http://localhost:4000/images/${food.image}`}
+                                            src={`http://a1-cafe-backend-07w6.onrender.com/images/${food.image}`}
                                             alt={food.name}
                                             className="item-img"
                                             onError={(e) => e.target.src = 'https://via.placeholder.com/150'}

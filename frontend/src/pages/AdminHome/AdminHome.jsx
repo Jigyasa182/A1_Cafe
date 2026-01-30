@@ -19,15 +19,15 @@ const AdminHome = () => {
         const fetchDashboardStats = async () => {
             try {
                 // Fetch order stats
-                const orderResponse = await fetch('http://localhost:4000/api/order/dashboard');
+                const orderResponse = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/order/dashboard');
                 const orderData = await orderResponse.json();
 
                 // Fetch all users count
-                const usersResponse = await fetch('http://localhost:4000/api/user/list');
+                const usersResponse = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/user/list');
                 const usersData = await usersResponse.json();
 
                 // Fetch food items count
-                const foodResponse = await fetch('http://localhost:4000/api/food/list');
+                const foodResponse = await fetch('http://a1-cafe-backend-07w6.onrender.com/api/food/list');
                 const foodData = await foodResponse.json();
 
                 if (orderData.success && usersData.success && foodData.success) {

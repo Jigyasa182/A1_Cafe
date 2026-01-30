@@ -7,7 +7,7 @@ const ManageTables = () => {
     const [loading, setLoading] = useState(true);
     const [name, setName] = useState('');
 
-    const url = "http://localhost:4000";
+    const url = "http://a1-cafe-backend-07w6.onrender.com";
 
     useEffect(() => {
         fetchData();
