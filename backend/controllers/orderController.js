@@ -195,12 +195,13 @@ const updateStatus = async (req, res) => {
         );
 
         // If order is paid, completed or cancelled and it was dine-in OR has a tableId, clear the table
-        if (['Paid', 'Completed', 'Cancelled'].includes(req.body.status) && (order.orderType === 'dine-in' || order.tableId)) {
+        if (['Paid', 'Completed', 'Cancelled'].includes(req.body.status) && (order.orderType === 'dine-in' || order.tableId || order.tableName)) {
             try {
-                console.log(`🧹 Attempting to clear table for order ${order._id}. TableId: ${order.tableId}, TableName: ${order.tableName}`);
+                console.log(`🧹 Status change to ${req.body.status}. Attempting to clear table for order ${order._id}. TableId: ${order.tableId}, TableName: ${order.tableName}`);
 
                 let tableUpdated = false;
 
+                // 1. Try clearing by TableId
                 if (order.tableId) {
                     const tableById = await tableModel.findByIdAndUpdate(
                         order.tableId,
@@ -216,9 +217,11 @@ const updateStatus = async (req, res) => {
                     }
                 }
 
+                // 2. If ID failed or missing, try clearing by Name
                 if (!tableUpdated && order.tableName) {
+                    const cleanName = order.tableName.trim();
                     const tableByName = await tableModel.findOneAndUpdate(
-                        { name: order.tableName },
+                        { name: { $regex: new RegExp(`^${cleanName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } },
                         {
                             status: 'available',
                             updatedAt: new Date()
@@ -227,7 +230,9 @@ const updateStatus = async (req, res) => {
                     );
                     if (tableByName) {
                         tableUpdated = true;
-                        console.log(`✅ Table cleared by Name: ${order.tableName}`);
+                        console.log(`✅ Table cleared by Name matching: "${order.tableName}"`);
+                    } else {
+                        console.log(`⚠️ No table found matching name: "${order.tableName}"`);
                     }
                 }
 
@@ -237,12 +242,12 @@ const updateStatus = async (req, res) => {
                         tableName: order.tableName,
                         status: 'available'
                     });
-                    console.log(`📢 Table update emitted for: ${order.tableName || order.tableId}`);
+                    console.log(`📢 Real-time table update event emitted`);
                 } else if (!tableUpdated) {
-                    console.log(`⚠️ Could not find table to clear for order ${order._id}`);
+                    console.log(`❌ FAILED to clear table for order ${order._id}. (Type: ${order.orderType})`);
                 }
             } catch (err) {
-                console.log("⚠️ Error clearing table:", err);
+                console.log("⚠️ ERROR in table clearing process:", err);
             }
         }
 

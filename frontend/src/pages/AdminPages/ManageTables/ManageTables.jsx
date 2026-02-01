@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './ManageTables.css';
 import axios from 'axios';
+import { StoreContext } from '../../../context/StoreContext';
 
 const ManageTables = () => {
+    const { url, socket } = useContext(StoreContext);
     const [tables, setTables] = useState([]);
     const [loading, setLoading] = useState(true);
     const [name, setName] = useState('');
 
-    const url = "https://a1-cafe-backend-07w6.onrender.com";
-
     useEffect(() => {
         fetchData();
-    }, []);
+
+        if (socket) {
+            socket.on('tableUpdated', (data) => {
+                console.log('📢 Table update received in ManageTables:', data);
+                fetchData();
+            });
+        }
+
+        return () => {
+            if (socket) {
+                socket.off('tableUpdated');
+            }
+        };
+    }, [socket]);
 
     const fetchData = async () => {
         try {

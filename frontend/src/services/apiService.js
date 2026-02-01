@@ -30,7 +30,7 @@ export const apiService = {
         const response = await fetch(`${API_URL}/category/add`, {
             method: 'POST',
             headers: {
-                'Authorization': token,
+                'token': token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(categoryData)

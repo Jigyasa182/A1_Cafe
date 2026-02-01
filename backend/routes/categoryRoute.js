@@ -6,6 +6,7 @@ import {
 	updateCategory,
 	deleteCategory,
 } from "../controllers/categoryController.js";
+import authMiddleWare from "../middleware/auth.js";
 
 const categoryRouter = express.Router();
 
@@ -17,9 +18,9 @@ categoryRouter.use((req, res, next) => {
 
 categoryRouter.get("/list", getAllCategories);
 categoryRouter.get("/admin/list", getAllCategoriesAdmin);
-categoryRouter.post("/add", addCategory);
-categoryRouter.post("/update", updateCategory);
-categoryRouter.post("/delete", deleteCategory);
+categoryRouter.post("/add", authMiddleWare, addCategory);
+categoryRouter.post("/update", authMiddleWare, updateCategory);
+categoryRouter.post("/delete", authMiddleWare, deleteCategory);
 
 // Test endpoint
 categoryRouter.get("/test", (req, res) => {
