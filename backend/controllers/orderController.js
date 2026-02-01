@@ -178,34 +178,68 @@ const updateStatus = async (req, res) => {
     try {
         const io = req.app.get('io');
 
+        const updateData = {
+            status: req.body.status,
+            updatedAt: new Date()
+        };
+
+        // If status is Paid, also update the payment flag
+        if (req.body.status === 'Paid') {
+            updateData.payment = true;
+        }
+
         const order = await orderModel.findByIdAndUpdate(
             req.body.orderId,
-            {
-                status: req.body.status,
-                updatedAt: new Date()
-            },
+            updateData,
             { new: true }
         );
 
-        // If order is completed or cancelled and it was dine-in, clear the table
-        if (['Completed', 'Cancelled'].includes(req.body.status) && order.orderType === 'dine-in' && order.tableId) {
+        // If order is paid, completed or cancelled and it was dine-in OR has a tableId, clear the table
+        if (['Paid', 'Completed', 'Cancelled'].includes(req.body.status) && (order.orderType === 'dine-in' || order.tableId)) {
             try {
-                await tableModel.findByIdAndUpdate(
-                    order.tableId,
-                    {
-                        status: 'available',
-                        currentOrderId: null,
-                        updatedAt: new Date()
-                    }
-                );
-                console.log("✅ Table cleared for completed order");
+                console.log(`🧹 Attempting to clear table for order ${order._id}. TableId: ${order.tableId}, TableName: ${order.tableName}`);
 
-                // Emit table updated event
-                if (io) {
+                let tableUpdated = false;
+
+                if (order.tableId) {
+                    const tableById = await tableModel.findByIdAndUpdate(
+                        order.tableId,
+                        {
+                            status: 'available',
+                            updatedAt: new Date()
+                        },
+                        { new: true }
+                    );
+                    if (tableById) {
+                        tableUpdated = true;
+                        console.log(`✅ Table cleared by ID: ${order.tableId}`);
+                    }
+                }
+
+                if (!tableUpdated && order.tableName) {
+                    const tableByName = await tableModel.findOneAndUpdate(
+                        { name: order.tableName },
+                        {
+                            status: 'available',
+                            updatedAt: new Date()
+                        },
+                        { new: true }
+                    );
+                    if (tableByName) {
+                        tableUpdated = true;
+                        console.log(`✅ Table cleared by Name: ${order.tableName}`);
+                    }
+                }
+
+                if (tableUpdated && io) {
                     io.emit('tableUpdated', {
                         tableId: order.tableId,
+                        tableName: order.tableName,
                         status: 'available'
                     });
+                    console.log(`📢 Table update emitted for: ${order.tableName || order.tableId}`);
+                } else if (!tableUpdated) {
+                    console.log(`⚠️ Could not find table to clear for order ${order._id}`);
                 }
             } catch (err) {
                 console.log("⚠️ Error clearing table:", err);

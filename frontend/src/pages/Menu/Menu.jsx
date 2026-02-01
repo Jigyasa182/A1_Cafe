@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { apiService } from '../../services/apiService';
 import { CartContext } from '../../context/CartContext';
+import { StoreContext } from '../../context/StoreContext';
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu';
 import './Menu.css';
 
 const Menu = () => {
   const { cart, addToCart, removeFromCart, updateQuantity } = useContext(CartContext);
+  const { url } = useContext(StoreContext);
   const [foods, setFoods] = useState([]);
   const [filteredFoods, setFilteredFoods] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null); // State for modal
   const [error, setError] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -101,9 +104,19 @@ const Menu = () => {
                 return (
                   <div key={item._id} className={`food-card ${item.soldOut ? 'sold-out' : ''}`}>
                     <div className="food-card-img-container">
-                      <img src={item.image.startsWith('http') ? item.image : `https://a1-cafe-backend-07w6.onrender.com/images/${item.image}`} alt={item.name} />
-                      {item.soldOut && <div className="sold-out-badge">Sold Out</div>}
+                      <img
+                        src={item.image.startsWith('http') ? item.image : `${url}/images/${item.image}`}
+                        alt={item.name}
+                        crossOrigin="anonymous"
+                        onClick={() => setSelectedImage(item.image.startsWith('http') ? item.image : `${url}/images/${item.image}`)}
+                        style={{ cursor: 'pointer' }}
+                        onError={(e) => {
+                          e.target.src = "https://placehold.co/400x400/ea580c/white?text=A1+Cafe";
+                          e.target.onerror = null;
+                        }}
+                      />
                     </div>
+
                     <div className="food-card-info">
                       <div className="food-card-name-rating">
                         <h4>{item.name}</h4>
@@ -146,6 +159,16 @@ const Menu = () => {
           )}
         </div>
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="image-modal-overlay" onClick={() => setSelectedImage(null)}>
+          <div className="image-modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage} alt="Full size" />
+          </div>
+          <div className="modal-close-hint">Tap anywhere to close</div>
+        </div>
+      )}
     </div>
   );
 };

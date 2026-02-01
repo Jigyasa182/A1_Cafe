@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 
 const StoreContextProvider = (props) => {
 	const [cartItems, setCartItems] = useState({});
-	const url = "https://a1-cafe-backend-07w6.onrender.com";
+	const url = "http://localhost:4000";
 	const [token, setToken] = useState("");
 	const [food_list, setFoodList] = useState([]);
 	const [tableId, setTableId] = useState("");
@@ -146,8 +146,11 @@ const StoreContextProvider = (props) => {
 		setSocket(newSocket);
 
 		return () => {
-			console.log('Disconnecting frontend socket');
-			newSocket.disconnect();
+			if (newSocket) {
+				console.log('Disconnecting frontend socket');
+				newSocket.off(); // Remove listeners
+				newSocket.disconnect(); // Close connection
+			}
 		};
 	}, []);
 

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../../../services/apiService';
+import { StoreContext } from '../../../context/StoreContext';
+import { useContext } from 'react';
 import './ManageMenu.css';
 
 const ManageMenu = () => {
+    const { url } = useContext(StoreContext);
     const [foods, setFoods] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -183,11 +186,16 @@ const ManageMenu = () => {
                                     <div key={food._id} className={`menu-item-card ${food.soldOut ? 'sold-out' : ''}`}>
                                         <div className="img-container">
                                             <img
-                                                src={food.image.startsWith('http') ? food.image : `https://a1-cafe-backend-07w6.onrender.com/images/${food.image}`}
-                                                alt={food.name}
                                                 className="item-img"
-                                                onError={(e) => e.target.src = 'https://via.placeholder.com/150'}
+                                                src={food.image.startsWith('http') ? food.image : `${url}/images/${food.image}`}
+                                                alt={food.name}
+                                                crossOrigin="anonymous"
+                                                onError={(e) => {
+                                                    e.target.src = "https://placehold.co/400x400/ea580c/white?text=A1+Cafe";
+                                                    e.target.onerror = null;
+                                                }}
                                             />
+
                                             {food.soldOut && <div className="sold-out-overlay">Sold Out</div>}
                                         </div>
                                         <div className="item-info">

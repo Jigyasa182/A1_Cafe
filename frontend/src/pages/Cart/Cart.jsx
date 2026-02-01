@@ -1,13 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { StoreContext } from '../../context/StoreContext';
 import Checkout from '../Checkout/Checkout'; // Ensure path is correct or adjust if Checkout is in pages
 import './Cart.css';
 
 const Cart = () => {
 	const { cart, getTotalPrice, removeFromCart, updateQuantity } = useContext(CartContext);
+	const { url } = useContext(StoreContext);
 	const navigate = useNavigate();
 	const [showCheckout, setShowCheckout] = useState(false);
+	const [selectedImage, setSelectedImage] = useState(null); // State for modal
 
 	const subtotal = getTotalPrice();
 	const deliveryFee = 0;
@@ -34,10 +37,18 @@ const Cart = () => {
 								<div key={item._id} className="cart-item-row">
 									<div className="item-info">
 										<img
-											src={`https://a1-cafe-backend-07w6.onrender.com/images/${item.image}`}
-											alt={item.name}
 											className="item-img"
+											src={item.image.startsWith('http') ? item.image : `${url}/images/${item.image}`}
+											alt={item.name}
+											crossOrigin="anonymous"
+											onClick={() => setSelectedImage(item.image.startsWith('http') ? item.image : `${url}/images/${item.image}`)}
+											style={{ cursor: 'pointer' }}
+											onError={(e) => {
+												e.target.src = "https://placehold.co/400x400/ea580c/white?text=A1+Cafe";
+												e.target.onerror = null;
+											}}
 										/>
+
 										<div>
 											<h4>{item.name}</h4>
 											<p>₹{item.price}</p>
@@ -102,6 +113,16 @@ const Cart = () => {
 						navigate('/orders');
 					}}
 				/>
+			)}
+
+			{/* Image Modal */}
+			{selectedImage && (
+				<div className="image-modal-overlay" onClick={() => setSelectedImage(null)}>
+					<div className="image-modal-content" onClick={(e) => e.stopPropagation()}>
+						<img src={selectedImage} alt="Full size" />
+					</div>
+					<div className="modal-close-hint">Tap anywhere to close</div>
+				</div>
 			)}
 		</div>
 	);
