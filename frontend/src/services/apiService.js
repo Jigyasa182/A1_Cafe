@@ -79,6 +79,30 @@ export const apiService = {
         return response.json();
     },
 
+    removeFood: async (id, token) => {
+        const response = await fetch(`${API_URL}/food/remove`, {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        });
+        return response.json();
+    },
+
+    toggleSoldOut: async (id, token) => {
+        const response = await fetch(`${API_URL}/food/toggle-sold-out`, {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        });
+        return response.json();
+    },
+
     // Order endpoints
     createOrder: async (orderData, token) => {
         const response = await fetch(`${API_URL}/order/place`, {

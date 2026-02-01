@@ -78,6 +78,39 @@ const ManageMenu = () => {
         }
     };
 
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this item?')) {
+            try {
+                const token = localStorage.getItem('token');
+                const result = await apiService.removeFood(id, token);
+                if (result.success) {
+                    fetchFoods();
+                    alert('Food item deleted');
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (err) {
+                console.error('Error deleting food:', err);
+                alert('Error deleting food item');
+            }
+        }
+    };
+
+    const handleToggleAvailability = async (id) => {
+        try {
+            const token = localStorage.getItem('token');
+            const result = await apiService.toggleSoldOut(id, token);
+            if (result.success) {
+                fetchFoods();
+            } else {
+                alert('Error: ' + result.message);
+            }
+        } catch (err) {
+            console.error('Error toggling availability:', err);
+            alert('Error toggling availability');
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
@@ -147,13 +180,16 @@ const ManageMenu = () => {
                                 <p>No menu items yet</p>
                             ) : (
                                 foods.map(food => (
-                                    <div key={food._id} className="menu-item-card">
-                                        <img
-                                            src={`https://a1-cafe-backend-07w6.onrender.com/images/${food.image}`}
-                                            alt={food.name}
-                                            className="item-img"
-                                            onError={(e) => e.target.src = 'https://via.placeholder.com/150'}
-                                        />
+                                    <div key={food._id} className={`menu-item-card ${food.soldOut ? 'sold-out' : ''}`}>
+                                        <div className="img-container">
+                                            <img
+                                                src={food.image.startsWith('http') ? food.image : `https://a1-cafe-backend-07w6.onrender.com/images/${food.image}`}
+                                                alt={food.name}
+                                                className="item-img"
+                                                onError={(e) => e.target.src = 'https://via.placeholder.com/150'}
+                                            />
+                                            {food.soldOut && <div className="sold-out-overlay">Sold Out</div>}
+                                        </div>
                                         <div className="item-info">
                                             <h4>{food.name}</h4>
                                             <p>{food.description}</p>
@@ -162,12 +198,23 @@ const ManageMenu = () => {
                                         </div>
                                         <div className="item-actions">
                                             <button
+                                                className={`toggle-btn ${food.soldOut ? 'btn-available' : 'btn-soldout'}`}
+                                                onClick={() => handleToggleAvailability(food._id)}
+                                            >
+                                                {food.soldOut ? 'Mark Available' : 'Mark Sold Out'}
+                                            </button>
+                                            <button
                                                 className="edit-btn"
                                                 onClick={() => handleEditClick(food)}
                                             >
                                                 Edit
                                             </button>
-                                            <button className="delete-btn">Delete</button>
+                                            <button
+                                                className="delete-btn"
+                                                onClick={() => handleDelete(food._id)}
+                                            >
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
                                 ))

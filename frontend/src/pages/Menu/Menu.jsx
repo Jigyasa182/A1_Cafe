@@ -99,9 +99,10 @@ const Menu = () => {
                 const quantity = getCartItemQuantity(item._id);
 
                 return (
-                  <div key={item._id} className="food-card">
+                  <div key={item._id} className={`food-card ${item.soldOut ? 'sold-out' : ''}`}>
                     <div className="food-card-img-container">
-                      <img src={`https://a1-cafe-backend-07w6.onrender.com/images/${item.image}`} alt={item.name} />
+                      <img src={item.image.startsWith('http') ? item.image : `https://a1-cafe-backend-07w6.onrender.com/images/${item.image}`} alt={item.name} />
+                      {item.soldOut && <div className="sold-out-badge">Sold Out</div>}
                     </div>
                     <div className="food-card-info">
                       <div className="food-card-name-rating">
@@ -112,7 +113,9 @@ const Menu = () => {
                         <p className="food-card-price">₹{item.price}</p>
 
                         {/* Quantity Logic */}
-                        {quantity === 0 ? (
+                        {item.soldOut ? (
+                          <button className="sold-out-btn" disabled>Sold Out</button>
+                        ) : quantity === 0 ? (
                           <button
                             className="add-to-cart-btn"
                             onClick={() => addToCart(item)}
