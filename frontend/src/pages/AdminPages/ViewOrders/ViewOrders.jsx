@@ -17,7 +17,8 @@ const ViewOrders = () => {
     }, []);
 
     const setupSocket = () => {
-        const newSocket = io('https://a1-cafe-backend-07w6.onrender.com', {
+        const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+        const newSocket = io(backendUrl, {
             reconnection: true,
             reconnectionDelay: 1000,
             reconnectionAttempts: 5,
@@ -77,7 +78,8 @@ const ViewOrders = () => {
 
     const handleStatusChange = async (orderId, newStatus) => {
         try {
-            const response = await fetch('https://a1-cafe-backend-07w6.onrender.com/api/order/status', {
+            const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+            const response = await fetch(`${backendUrl}/api/order/status`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -115,7 +117,8 @@ const ViewOrders = () => {
         }
 
         try {
-            const response = await fetch(`https://a1-cafe-backend-07w6.onrender.com/api/order/delete/${orderId}`, {
+            const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+            const response = await fetch(`${backendUrl}/api/order/delete/${orderId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
