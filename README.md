@@ -46,5 +46,31 @@ Designed as a **production-ready solution** for real-world cafes and food outlet
 ### Deployment
 - Frontend: Render 
 - Backend: Render
-- 
 
+---
+
+### Project Structure
+cafe-management-system/
+│
+├── frontend/          # React frontend
+│   ├── components
+│   ├── pages
+│   └── services
+│
+├── backend/           # Express backend
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   └── utils
+│
+├── README.md
+
+### Use Cases
+Ideal for:
+- Small to medium cafes
+- Restaurants and food outlets
+- Freelance client projects
+- Real-world MERN stack implementations
+
+© 2025 Cafe Management System. All rights reserved.
